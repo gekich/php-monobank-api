@@ -22,6 +22,11 @@ final class Statement
     private $description;
 
     /**
+     * @var string|null
+     */
+    private $comment;
+
+    /**
      * @var int
      */
     private $mcc;
@@ -72,7 +77,8 @@ final class Statement
         int $currencyCode,
         int $commissionRate,
         int $cashbackAmount,
-        int $balance
+        int $balance,
+        ?string $comment
     ) {
         $this->id = $id;
         $this->time = $time;
@@ -85,6 +91,7 @@ final class Statement
         $this->commissionRate = $commissionRate;
         $this->cashbackAmount = $cashbackAmount;
         $this->balance = $balance;
+        $this->comment = $comment;
     }
 
     public static function fromResponse(array $data): self
@@ -100,7 +107,8 @@ final class Statement
             $data['currencyCode'],
             $data['commissionRate'],
             $data['cashbackAmount'],
-            $data['balance']
+            $data['balance'],
+            isset($data['comment']) ? $data['comment'] : null
         );
     }
 
@@ -117,6 +125,11 @@ final class Statement
     public function description(): string
     {
         return $this->description;
+    }
+
+    public function comment(): ?string
+    {
+        return $this->comment;
     }
 
     public function mcc(): int

@@ -23,6 +23,7 @@ final class StatementTest extends TestCase
             'commissionRate' => 50,
             'cashbackAmount' => 50,
             'balance' => 1000,
+            'comment' => 'comment'
         ];
 
         $statement = Statement::fromResponse($data);
@@ -38,5 +39,6 @@ final class StatementTest extends TestCase
         $this->assertEquals(50, $statement->commissionRate());
         $this->assertEquals(50, $statement->cashbackAmount());
         $this->assertEquals(1000, $statement->balance());
+        $this->assertEquals('comment', $statement->comment());
     }
 }
