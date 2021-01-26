@@ -78,7 +78,7 @@ final class Statement
         int $commissionRate,
         int $cashbackAmount,
         int $balance,
-        ?string $comment
+        ?string $comment = null
     ) {
         $this->id = $id;
         $this->time = $time;
